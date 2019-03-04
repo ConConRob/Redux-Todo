@@ -1,7 +1,7 @@
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_DONE = "TOGGLE_DONE";
 export const DELETE_BY_ID = 'DELETE_BY_ID';
-
+export const DELETE_ALL_COMPLETED = 'DELETE_ALL_COMPLETED'
 
 export const addTodo = value => {
   return {
@@ -21,5 +21,11 @@ export const deleteById = value => {
   return {
     type: DELETE_BY_ID,
     value
+  }
+}
+
+export const deleteAllCompleted = () => {
+  return {
+    type: DELETE_ALL_COMPLETED
   }
 }

@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo, toggleDone, deleteById } from "../actions";
+import {
+  addTodo,
+  toggleDone,
+  deleteById,
+  deleteAllCompleted
+} from "../actions";
 import styled from "styled-components";
 import Input from "./Input";
 
@@ -9,10 +14,16 @@ const StyledTodoList = styled.div`
 `;
 
 const StyledListItem = styled.li`
-  text-decoration: ${props => (props.isCompleted ? "line-through" : "none")};
   width: 400px;
   display: flex;
   justify-content: space-between;
+  p {
+    text-decoration: ${props => (props.isCompleted ? "line-through" : "none")};
+  }
+  button {
+    background: none;
+    height: 40px;
+  }
 `;
 
 export class TodoList extends React.Component {
@@ -20,14 +31,11 @@ export class TodoList extends React.Component {
     return (
       <StyledTodoList>
         <Input submitFunction={this.props.addTodo} />
+        <button onClick={this.props.deleteAllCompleted}>CLEAR</button>
         <ul>
           {this.props.todos.map((todo, index) => (
-            <StyledListItem
-              key={index}
-              onClick={() => this.props.toggleDone(todo.id)}
-              isCompleted={todo.completed}
-            >
-              {todo.value}
+            <StyledListItem key={index} isCompleted={todo.completed}>
+              <p onClick={() => this.props.toggleDone(todo.id)}>{todo.value}</p>
               <button onClick={() => this.props.deleteById(todo.id)}>
                 DELETE
               </button>
@@ -47,5 +55,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addTodo, toggleDone, deleteById }
+  { addTodo, toggleDone, deleteById, deleteAllCompleted }
 )(TodoList);
