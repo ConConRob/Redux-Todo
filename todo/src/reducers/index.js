@@ -1,4 +1,4 @@
-import {ADD_TODO, TOGGLE_DONE} from '../actions/index'
+import {ADD_TODO, TOGGLE_DONE, DELETE_BY_ID} from '../actions/index'
 
 const initialState = {
     todos:[]
@@ -10,7 +10,6 @@ function count(){
     }
 }  
 const ider = count()
-console.log(ider());
   export default (state = initialState, action) => {
     switch (action.type) {
       case ADD_TODO:
@@ -34,6 +33,10 @@ console.log(ider());
             return todo
          })   
         };
+      case DELETE_BY_ID:
+        return {
+          todos: state.todos.filter(todo => todo.id !== action.value)
+        }
       default:
         return state;
     }

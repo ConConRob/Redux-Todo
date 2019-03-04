@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo, toggleDone } from "../actions";
+import { addTodo, toggleDone, deleteById } from "../actions";
 import styled from "styled-components";
 import Input from "./Input";
 
@@ -10,6 +10,9 @@ const StyledTodoList = styled.div`
 
 const StyledListItem = styled.li`
   text-decoration: ${props => (props.isCompleted ? "line-through" : "none")};
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export class TodoList extends React.Component {
@@ -25,6 +28,9 @@ export class TodoList extends React.Component {
               isCompleted={todo.completed}
             >
               {todo.value}
+              <button onClick={() => this.props.deleteById(todo.id)}>
+                DELETE
+              </button>
             </StyledListItem>
           ))}
         </ul>
@@ -41,5 +47,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addTodo, toggleDone }
+  { addTodo, toggleDone, deleteById }
 )(TodoList);

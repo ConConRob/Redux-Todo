@@ -1,17 +1,25 @@
-export const ADD_TODO = 'ADD_TODO';
-export const TOGGLE_DONE = 'TOGGLE_DONE';
+export const ADD_TODO = "ADD_TODO";
+export const TOGGLE_DONE = "TOGGLE_DONE";
+export const DELETE_BY_ID = 'DELETE_BY_ID';
 
 
-export const addTodo = (value) => {
+export const addTodo = value => {
   return {
-      type: ADD_TODO,
-      value
-    };
+    type: ADD_TODO,
+    value
+  };
 };
 
-export const toggleDone = (value) => {
+export const toggleDone = value => {
   return {
-      type: TOGGLE_DONE,
-      value
-    };
+    type: TOGGLE_DONE,
+    value
+  };
 };
+
+export const deleteById = value => {
+  return {
+    type: DELETE_BY_ID,
+    value
+  }
+}
