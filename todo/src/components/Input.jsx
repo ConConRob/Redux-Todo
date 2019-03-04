@@ -17,8 +17,10 @@ export default class Input extends React.Component {
   };
   submit = event => {
     event.preventDefault();
-    this.props.submitFunction(this.state.currentInputValue);
-    this.setState({ currentInputValue: "" });
+    if (this.state.currentInputValue !== "") {
+      this.props.submitFunction(this.state.currentInputValue);
+      this.setState({ currentInputValue: "" });
+    }
   };
   render() {
     return (
