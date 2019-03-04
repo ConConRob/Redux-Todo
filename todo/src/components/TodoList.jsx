@@ -21,7 +21,7 @@ export class TodoList extends React.Component {
           {this.props.todos.map((todo, index) => (
             <StyledListItem
               key={index}
-              onClick={() => this.props.toggleDone(todo.value)}
+              onClick={() => this.props.toggleDone(todo.id)}
               isCompleted={todo.completed}
             >
               {todo.value}
