@@ -10,7 +10,16 @@ import styled from "styled-components";
 import Input from "./Input";
 
 const StyledTodoList = styled.div`
-  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .top {
+    display: flex;
+    justify-content: center;
+    button {
+      background: none;
+    }
+  }
 `;
 
 const StyledListItem = styled.li`
@@ -30,8 +39,11 @@ export class TodoList extends React.Component {
   render() {
     return (
       <StyledTodoList>
-        <Input submitFunction={this.props.addTodo} />
-        <button onClick={this.props.deleteAllCompleted}>CLEAR</button>
+        <h1>TODOS</h1>
+        <div className="top">
+          <Input submitFunction={this.props.addTodo} />
+          <button onClick={this.props.deleteAllCompleted}>CLEAR</button>
+        </div>
         <ul>
           {this.props.todos.map((todo, index) => (
             <StyledListItem key={index} isCompleted={todo.completed}>
