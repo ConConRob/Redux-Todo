@@ -1,15 +1,15 @@
 import {ADD_TODO, TOGGLE_DONE, DELETE_BY_ID, DELETE_ALL_COMPLETED, ADD_TODOLIST} from '../actions/index'
-
+const randomId = require('random-id');
 const initialState = {
     todos:[]
   }
-function count(){
-    let count=0;
-    return function (){
-        return count++
-    }
-}  
-const ider = count()
+// function count(){
+//     let count=0;
+//     return function (){
+//         return count++
+//     }
+// }  
+// const ider = count()
   export default (state = initialState, action) => {
     switch (action.type) {
       case ADD_TODO:
@@ -17,7 +17,7 @@ const ider = count()
             todos: state.todos.concat({
                 value: action.value,
                 completed: false,
-                id: ider()
+                id: randomId()
             })
         };
       case TOGGLE_DONE:
