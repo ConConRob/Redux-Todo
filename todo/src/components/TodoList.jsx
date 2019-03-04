@@ -4,7 +4,8 @@ import {
   addTodo,
   toggleDone,
   deleteById,
-  deleteAllCompleted
+  deleteAllCompleted,
+  addTodoList
 } from "../actions";
 import styled from "styled-components";
 import Input from "./Input";
@@ -36,6 +37,16 @@ const StyledListItem = styled.li`
 `;
 
 export class TodoList extends React.Component {
+  componentDidMount() {
+    const localTodos = localStorage.getItem("todos");
+    console.log(localTodos);
+    if (localTodos) {
+      this.props.addTodoList(JSON.parse(localTodos));
+    }
+  }
+  componentDidUpdate() {
+    localStorage.setItem("todos", JSON.stringify(this.props.todos));
+  }
   render() {
     return (
       <StyledTodoList>
@@ -67,5 +78,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addTodo, toggleDone, deleteById, deleteAllCompleted }
+  { addTodo, toggleDone, deleteById, deleteAllCompleted, addTodoList }
 )(TodoList);

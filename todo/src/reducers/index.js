@@ -1,4 +1,4 @@
-import {ADD_TODO, TOGGLE_DONE, DELETE_BY_ID, DELETE_ALL_COMPLETED} from '../actions/index'
+import {ADD_TODO, TOGGLE_DONE, DELETE_BY_ID, DELETE_ALL_COMPLETED, ADD_TODOLIST} from '../actions/index'
 
 const initialState = {
     todos:[]
@@ -41,6 +41,10 @@ const ider = count()
         return {
           todos: state.todos.filter(todo => !todo.completed)
         };
+      case ADD_TODOLIST:
+        return{
+          todos: action.value
+        }
       default:
         return state;
     }
