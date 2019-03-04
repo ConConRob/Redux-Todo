@@ -14,8 +14,10 @@ export class TodoList extends React.Component {
       <StyledTodoList>
         <Input submitFunction={this.props.addTodo} />
         <ul>
-          {this.props.todos.map(todo => (
-            <li>{todo.value}</li>
+          {this.props.todos.map((todo, index) => (
+            <li key={index} onClick={() => this.props.toggleDone(todo.value)}>
+              {todo.value}
+            </li>
           ))}
         </ul>
       </StyledTodoList>
