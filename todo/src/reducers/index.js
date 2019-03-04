@@ -19,7 +19,7 @@ const initialState = {
             if(todo.value === action.value){
                 return {
                     value: todo.value,
-                    completed: todo.value? true: false,
+                    completed: todo.completed? false: true,
                 }
             }
             return todo

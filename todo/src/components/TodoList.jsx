@@ -8,6 +8,10 @@ const StyledTodoList = styled.div`
   color: red;
 `;
 
+const StyledListItem = styled.li`
+  text-decoration: ${props => (props.isCompleted ? "line-through" : "none")};
+`;
+
 export class TodoList extends React.Component {
   render() {
     return (
@@ -15,9 +19,13 @@ export class TodoList extends React.Component {
         <Input submitFunction={this.props.addTodo} />
         <ul>
           {this.props.todos.map((todo, index) => (
-            <li key={index} onClick={() => this.props.toggleDone(todo.value)}>
+            <StyledListItem
+              key={index}
+              onClick={() => this.props.toggleDone(todo.value)}
+              isCompleted={todo.completed}
+            >
               {todo.value}
-            </li>
+            </StyledListItem>
           ))}
         </ul>
       </StyledTodoList>
