@@ -3,13 +3,6 @@ import {ADD_TODO, TOGGLE_DONE, DELETE_BY_ID, DELETE_ALL_COMPLETED, ADD_TODOLIST}
 const initialState = {
     todos:[]
   }
-// function count(){
-//     let count=0;
-//     return function (){
-//         return count++
-//     }
-// }  
-// const ider = count()
   export default (state = initialState, action) => {
     switch (action.type) {
       case ADD_TODO:
@@ -21,9 +14,9 @@ const initialState = {
          todos: state.todos.map(todo => {
             if(todo.id === action.payload){
                 return {
-                    value: todo.value,
+                    ...todo,
                     completed: todo.completed? false: true,
-                    id: todo.id
+                    
                 }
             }
             return todo
