@@ -3,25 +3,30 @@ export const TOGGLE_DONE = "TOGGLE_DONE";
 export const DELETE_BY_ID = 'DELETE_BY_ID';
 export const DELETE_ALL_COMPLETED = 'DELETE_ALL_COMPLETED';
 export const ADD_TODOLIST = 'ADD_TODOLIST';
+const randomId = require('random-id');
 
 export const addTodo = value => {
   return {
     type: ADD_TODO,
-    value
+    payload: {
+      value,
+      completed: false,
+      id: randomId()
+    }
   };
 };
 
 export const toggleDone = value => {
   return {
     type: TOGGLE_DONE,
-    value
+    payload: value,
   };
 };
 
 export const deleteById = value => {
   return {
     type: DELETE_BY_ID,
-    value
+    payload: value
   }
 }
 
@@ -34,6 +39,6 @@ export const deleteAllCompleted = () => {
 export const addTodoList = (value) => {
   return {
     type: ADD_TODOLIST,
-    value
+    payload: value
   }
 }

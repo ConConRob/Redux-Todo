@@ -1,5 +1,5 @@
 import {ADD_TODO, TOGGLE_DONE, DELETE_BY_ID, DELETE_ALL_COMPLETED, ADD_TODOLIST} from '../actions/index'
-const randomId = require('random-id');
+
 const initialState = {
     todos:[]
   }
@@ -14,16 +14,12 @@ const initialState = {
     switch (action.type) {
       case ADD_TODO:
         return {
-            todos: state.todos.concat({
-                value: action.value,
-                completed: false,
-                id: randomId()
-            })
+            todos: state.todos.concat(action.payload)
         };
       case TOGGLE_DONE:
         return {
          todos: state.todos.map(todo => {
-            if(todo.id === action.value){
+            if(todo.id === action.payload){
                 return {
                     value: todo.value,
                     completed: todo.completed? false: true,
@@ -35,7 +31,7 @@ const initialState = {
         };
       case DELETE_BY_ID:
         return {
-          todos: state.todos.filter(todo => todo.id !== action.value)
+          todos: state.todos.filter(todo => todo.id !== action.payload)
         };
       case DELETE_ALL_COMPLETED:
         return {
@@ -43,7 +39,7 @@ const initialState = {
         };
       case ADD_TODOLIST:
         return{
-          todos: action.value
+          todos: action.payload
         }
       default:
         return state;

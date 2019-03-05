@@ -39,7 +39,6 @@ const StyledListItem = styled.li`
 export class TodoList extends React.Component {
   componentDidMount() {
     const localTodos = localStorage.getItem("todos");
-    console.log(localTodos);
     if (localTodos) {
       this.props.addTodoList(JSON.parse(localTodos));
     }
